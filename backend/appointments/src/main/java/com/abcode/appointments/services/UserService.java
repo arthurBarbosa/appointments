@@ -40,19 +40,22 @@ public class UserService implements UserDetailsService {
 
 
     @Transactional
-    public UserResponseDTO insert(UserRequestDTO dto){
+    public UserResponseDTO insert(UserRequestDTO dto) {
         var entity = new User();
         copyDtoToEntity(dto, entity);
         entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+        var userSave = userRepository.save(entity);
         return new UserResponseDTO(entity);
     }
 
     private void copyDtoToEntity(UserRequestDTO dto, User entity) {
+        entity.setId(dto.getId());
         entity.setEmail(dto.getEmail());
-        entity.setPassword(entity.getPassword());
+        entity.setPassword(dto.getPassword());
+        entity.setName(dto.getName());
 
         entity.getRoles().clear();
-        for(RoleDTO roleDTO : dto.getRoles()){
+        for (RoleDTO roleDTO : dto.getRoles()) {
             var role = roleRepository.getOne(roleDTO.getId());
             entity.getRoles().add(role);
         }
@@ -67,12 +70,12 @@ public class UserService implements UserDetailsService {
             throw new UsernameNotFoundException("Email not found");
         }
         logger.info("User found: " + username);
-        return new UserSystem(user, getRoles(user));
+        return user;
     }
 
     private Collection<? extends GrantedAuthority> getRoles(User user) {
         Set<SimpleGrantedAuthority> authorities = new HashSet<>();
-        authorities.add(new SimpleGrantedAuthority("ROLE_DOCTOR"));
+        authorities.add(new SimpleGrantedAuthority("ROLE_ADMIN"));
         return authorities;
     }
 

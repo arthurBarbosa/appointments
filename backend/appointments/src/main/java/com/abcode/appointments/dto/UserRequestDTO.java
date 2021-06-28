@@ -19,12 +19,14 @@ public class UserRequestDTO {
     private Long id;
     private String email;
     private String password;
+    private String name;
     private Set<RoleDTO> roles = new HashSet<>();
 
     public UserRequestDTO(User entity) {
         this.id = entity.getId();
         this.email = entity.getEmail();
         this.password = entity.getPassword();
+        this.name = entity.getName();
         entity.getRoles().forEach(role -> this.roles.add(new RoleDTO(role)));
     }
 }

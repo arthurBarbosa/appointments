@@ -11,7 +11,7 @@ import java.io.Serializable;
 @Setter
 @Entity
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
-@Table(name = "role")
+@Table(name = "tb_role")
 public class Role implements Serializable {
 
     @Id
