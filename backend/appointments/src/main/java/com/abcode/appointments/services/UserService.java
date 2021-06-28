@@ -1,7 +1,11 @@
 package com.abcode.appointments.services;
 
 import com.abcode.appointments.config.UserSystem;
+import com.abcode.appointments.dto.RoleDTO;
+import com.abcode.appointments.dto.UserRequestDTO;
+import com.abcode.appointments.dto.UserResponseDTO;
 import com.abcode.appointments.entities.User;
+import com.abcode.appointments.repositories.RoleRepository;
 import com.abcode.appointments.repositories.UserRepository;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -11,9 +15,11 @@ import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Service;
 
 
+import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
@@ -26,9 +32,32 @@ public class UserService implements UserDetailsService {
     @Autowired
     private UserRepository userRepository;
 
-    public UserResponseDTO insert(UserRequestDTO dto){
+    @Autowired
+    private RoleRepository roleRepository;
 
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+
+    @Transactional
+    public UserResponseDTO insert(UserRequestDTO dto){
+        var entity = new User();
+        copyDtoToEntity(dto, entity);
+        entity.setPassword(passwordEncoder.encode(dto.getPassword()));
+        return new UserResponseDTO(entity);
     }
+
+    private void copyDtoToEntity(UserRequestDTO dto, User entity) {
+        entity.setEmail(dto.getEmail());
+        entity.setPassword(entity.getPassword());
+
+        entity.getRoles().clear();
+        for(RoleDTO roleDTO : dto.getRoles()){
+            var role = roleRepository.getOne(roleDTO.getId());
+            entity.getRoles().add(role);
+        }
+    }
+
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
