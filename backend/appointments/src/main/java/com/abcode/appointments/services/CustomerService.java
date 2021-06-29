@@ -14,7 +14,7 @@ public class CustomerService extends GenericService<Customer, CustomerDTO, Custo
 
     @Override
     protected CustomerDTO copyEntityToDto(Customer entity) {
-        return null;
+        return CustomerDTO.builder().id(entity.getId()).name(entity.getName()).build();
     }
 
     @Override
