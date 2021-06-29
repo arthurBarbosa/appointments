@@ -1,9 +1,6 @@
 package com.abcode.appointments.entities;
 
-import lombok.EqualsAndHashCode;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
@@ -13,6 +10,7 @@ import java.time.LocalDateTime;
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
+@Builder
 @Table(name = "tb_appointment")
 public class Appointment {
 
