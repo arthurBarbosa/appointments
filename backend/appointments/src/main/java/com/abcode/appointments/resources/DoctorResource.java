@@ -9,5 +9,6 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @RequestMapping("/doctor")
-public class DoctorResource extends GenericResource<Doctor, DoctorDTO, DoctorRepository, DoctorService>{
+public class DoctorResource extends GenericResource<Doctor, DoctorDTO, DoctorRepository, DoctorService> {
+
 }
