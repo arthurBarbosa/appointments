@@ -13,7 +13,9 @@ class App extends Component {
       <BrowserRouter>
         <div className="App">
           <NavBar />
-          <AppointmentListTable />
+          <div className="container" style={{ marginTop: 20 }}>
+            <AppointmentListTable />
+          </div>
         </div>
       </BrowserRouter>
     );
