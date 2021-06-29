@@ -1,18 +1,17 @@
 package com.abcode.appointments.entities;
 
-import lombok.EqualsAndHashCode;
-import lombok.Generated;
-import lombok.Getter;
-import lombok.Setter;
+import lombok.*;
 
 import javax.persistence.*;
 import java.time.Instant;
+import java.time.LocalDateTime;
 
 @Getter
 @Setter
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "appointment")
+@Builder
+@Table(name = "tb_appointment")
 public class Appointment {
 
     @Id
@@ -20,12 +19,12 @@ public class Appointment {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    @Column(columnDefinition = "TIMESTAMP WITHOUT TIME ZONE")
-    private Instant moment;
+    @Column
+    private LocalDateTime date;
 
     @ManyToOne
     private Doctor doctor;
 
     @ManyToOne
-    private Patient patient;
+    private Customer customer;
 }

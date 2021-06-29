@@ -23,6 +23,7 @@ import javax.transaction.Transactional;
 import java.util.Collection;
 import java.util.HashSet;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 @Service
 public class UserService implements UserDetailsService {
@@ -79,5 +80,11 @@ public class UserService implements UserDetailsService {
         return authorities;
     }
 
-
+    public Collection<UserResponseDTO> findAll() {
+        return userRepository.findAll().stream().map(x -> UserResponseDTO.builder()
+                .id(x.getId())
+                .name(x.getName())
+                .email(x.getEmail())
+                .build()).collect(Collectors.toList());
+    }
 }

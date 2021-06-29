@@ -7,6 +7,7 @@ public enum ExceptionEnum {
 
     INVALID_DATA("/dados-invalidos", "Dados inválidos"),
     EMAIL_DUPLICATE("/email-duplicado", "Email já existente na base de dados."),
+    USER_DUPLICATE("/user-duplicado", "Usuário já existente na base de dados."),
     RESOURCE_NOT_FOUND("/recurso-nao-encontrado", "Recurso não encontrado");
 
     private String uri;
