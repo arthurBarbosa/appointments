@@ -36,10 +36,14 @@ export default class AppointmentListTable extends Component {
       <>
         <table className="table table-striped">
           <TableHeader />
-          <TableBody
-            appointments={this.state.appointments}
-            onDelete={this.onDeleteHandler}
-          />
+          {this.state.appointments.length > 0 ? (
+            <TableBody
+              appointments={this.state.appointments}
+              onDelete={this.onDeleteHandler}
+            />
+          ) : (
+            <EmptyTableBody />
+          )}
         </table>
         <ToastContainer autoClose={1500} />
       </>
@@ -82,6 +86,16 @@ const TableBody = (props) => {
           </td>
         </tr>
       ))}
+    </tbody>
+  );
+};
+
+const EmptyTableBody = (props) => {
+  return (
+    <tbody>
+      <tr>
+        <td colSpan="4">Sem consultas cadastrada no momento!</td>
+      </tr>
     </tbody>
   );
 };
