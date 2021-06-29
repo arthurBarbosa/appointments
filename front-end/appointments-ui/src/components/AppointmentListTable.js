@@ -11,6 +11,7 @@ export default class AppointmentListTable extends Component {
       appointments: [],
     };
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
+    this.onStatusChangeHandler = this.onStatusChangeHandler.bind(this);
   }
 
   componentDidMount() {
@@ -30,6 +31,11 @@ export default class AppointmentListTable extends Component {
       });
     }
   }
+  onStatusChangeHandler(appointment) {
+    appointment.done = !appointment.done;
+    AppointmentService.save(appointment);
+    this.listAppointments();
+  }
 
   render() {
     return (
@@ -40,6 +46,7 @@ export default class AppointmentListTable extends Component {
             <TableBody
               appointments={this.state.appointments}
               onDelete={this.onDeleteHandler}
+              onStatusChange={this.onStatusChangeHandler}
             />
           ) : (
             <EmptyTableBody />
@@ -70,7 +77,11 @@ const TableBody = (props) => {
       {props.appointments.map((appointment) => (
         <tr key={appointment.id}>
           <td>
-            <input type="checkbox" checked={appointment.done} />
+            <input
+              type="checkbox"
+              checked={appointment.done}
+              onChange={() => props.onStatusChange(appointment)}
+            />
           </td>
           <td>{appointment.name}</td>
           <td>{appointment.whenToDo}</td>
