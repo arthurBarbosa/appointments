@@ -11,5 +11,11 @@ class AppointmentService {
   list() {
     return this.appointments;
   }
+
+  delete(id) {
+    this.appointments = this.appointments.filter(
+      (appointment) => appointment.id !== id,
+    );
+  }
 }
 export default new AppointmentService();

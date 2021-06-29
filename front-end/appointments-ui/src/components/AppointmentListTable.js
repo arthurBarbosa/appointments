@@ -1,5 +1,7 @@
 import React, { Component } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import AppointmentService from '../api/AppointmentService';
+import 'react-toastify/dist/ReactToastify.css';
 
 export default class AppointmentListTable extends Component {
   constructor(props) {
@@ -8,6 +10,7 @@ export default class AppointmentListTable extends Component {
     this.state = {
       appointments: [],
     };
+    this.onDeleteHandler = this.onDeleteHandler.bind(this);
   }
 
   componentDidMount() {
@@ -18,12 +21,28 @@ export default class AppointmentListTable extends Component {
     this.setState({ appointments: AppointmentService.list() });
   }
 
+  onDeleteHandler(id) {
+    if (window.confirm('Deseja excluir esta consulta')) {
+      AppointmentService.delete(id);
+      this.listAppointments();
+      toast.success('Consulta excluída!', {
+        position: toast.POSITION.BOTTOM_LEFT,
+      });
+    }
+  }
+
   render() {
     return (
-      <table className="table table-striped">
-        <TableHeader />
-        <TableBody appointments={this.state.appointments} />
-      </table>
+      <>
+        <table className="table table-striped">
+          <TableHeader />
+          <TableBody
+            appointments={this.state.appointments}
+            onDelete={this.onDeleteHandler}
+          />
+        </table>
+        <ToastContainer autoClose={1500} />
+      </>
     );
   }
 }
@@ -54,7 +73,12 @@ const TableBody = (props) => {
           <td>
             <input type="button" className="btn btn-primary" value="Editar" />
             &nbsp;
-            <input type="button" className="btn btn-danger" value="Excluir" />
+            <input
+              type="button"
+              className="btn btn-danger"
+              value="Excluir"
+              onClick={() => props.onDelete(appointment.id)}
+            />
           </td>
         </tr>
       ))}
