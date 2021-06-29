@@ -1,5 +1,6 @@
 package com.abcode.appointments.resources.exceptions;
 
+import com.abcode.appointments.services.exceptions.DuplicateRegisterException;
 import org.hibernate.exception.ConstraintViolationException;
 import org.springframework.context.MessageSource;
 import org.springframework.context.i18n.LocaleContextHolder;
@@ -62,6 +63,15 @@ public class ErrorHandlerExcption extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleException(ConstraintViolationException ex, WebRequest request) {
         HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
         ExceptionEnum errorType = ExceptionEnum.EMAIL_DUPLICATE;
+        String msg = ex.getMessage();
+        Error errors = createErrorBuilder(status, errorType, msg).build();
+        return handleExceptionInternal(ex, errors, new HttpHeaders(), status, request);
+    }
+
+    @ExceptionHandler(DuplicateRegisterException.class)
+    public ResponseEntity<Object> handleException(DuplicateRegisterException ex, WebRequest request) {
+        HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
+        ExceptionEnum errorType = ExceptionEnum.USER_DUPLICATE;
         String msg = ex.getMessage();
         Error errors = createErrorBuilder(status, errorType, msg).build();
         return handleExceptionInternal(ex, errors, new HttpHeaders(), status, request);

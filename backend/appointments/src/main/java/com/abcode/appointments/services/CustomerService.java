@@ -3,6 +3,7 @@ package com.abcode.appointments.services;
 import com.abcode.appointments.dto.CustomerDTO;
 import com.abcode.appointments.entities.Customer;
 import com.abcode.appointments.repositories.CustomerRepository;
+import com.abcode.appointments.services.exceptions.DuplicateRegisterException;
 import org.springframework.stereotype.Service;
 
 @Service
@@ -19,6 +20,6 @@ public class CustomerService extends GenericService<Customer, CustomerDTO, Custo
 
     @Override
     protected void valid(CustomerDTO dto) {
-
+        if(repository.findByName(dto.getName()).isEmpty()) throw new DuplicateRegisterException("Cliente já cadastrado");
     }
 }
