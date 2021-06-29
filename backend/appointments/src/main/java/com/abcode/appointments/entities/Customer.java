@@ -16,7 +16,7 @@ import java.io.Serializable;
 @JsonInclude(JsonInclude.Include.NON_NULL)
 @EqualsAndHashCode(onlyExplicitlyIncluded = true)
 @Entity
-@Table(name = "customer")
+@Table(name = "tb_customer")
 public class Customer implements Serializable {
 
     @Id
