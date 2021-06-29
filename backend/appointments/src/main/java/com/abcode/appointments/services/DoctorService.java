@@ -4,7 +4,9 @@ import com.abcode.appointments.dto.DoctorDTO;
 import com.abcode.appointments.entities.Doctor;
 import com.abcode.appointments.repositories.DoctorRepository;
 import com.abcode.appointments.services.exceptions.DuplicateRegisterException;
+import org.springframework.stereotype.Service;
 
+@Service
 public class DoctorService extends GenericService<Doctor, DoctorDTO, DoctorRepository> {
     @Override
     protected Doctor copyDtoToEntity(DoctorDTO dto) {
