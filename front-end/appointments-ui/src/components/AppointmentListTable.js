@@ -18,8 +18,8 @@ export default class AppointmentListTable extends Component {
     this.listAppointments();
   }
 
-  listAppointments() {
-    this.setState({ appointments: AppointmentService.list() });
+  async listAppointments() {
+    this.setState({ appointments: await AppointmentService.list() });
   }
 
   onDeleteHandler(id) {
@@ -61,10 +61,11 @@ export default class AppointmentListTable extends Component {
 const TableHeader = () => {
   return (
     <thead>
+      <h1>Lista de Consultas</h1>
       <tr className="thead-dark">
-        <th scope="col">Status</th>
-        <th scope="col">Nome</th>
         <th scope="col">Data</th>
+        <th scope="col">Médico</th>
+        <th scope="col">Cliente</th>
         <th scope="col">Ações</th>
       </tr>
     </thead>
@@ -75,16 +76,11 @@ const TableBody = (props) => {
   return (
     <tbody>
       {props.appointments.map((appointment) => (
-        <tr key={appointment.id}>
-          <td>
-            <input
-              type="checkbox"
-              checked={appointment.done}
-              onChange={() => props.onStatusChange(appointment)}
-            />
-          </td>
-          <td>{appointment.name}</td>
-          <td>{appointment.whenToDo}</td>
+        <tr key={appointment.doctor.id}>
+          
+          <td>{appointment.date}</td>
+          <td>{appointment.doctor.name}</td>
+          <td>{appointment.customer.name}</td>
           <td>
             <input type="button" className="btn btn-primary" value="Editar" />
             &nbsp;

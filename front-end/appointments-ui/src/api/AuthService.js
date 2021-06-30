@@ -12,6 +12,7 @@ class AuthService {
     const headers = {
       Authorization: `Basic ${window.btoa(token)}`,
       'Content-Type': 'application/x-www-form-urlencoded',
+      'authenticationType': 'password'
     };
 
     axios

@@ -29,7 +29,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     @Autowired
     private JwtTokenStore tokenStore;
 
-    private static final String[] PUBLIC = {"/oauth/token","/customer/**","/doctor/**", "/h2-console/**", "/v3/**", "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**", "/"};
+    private static final String[] PUBLIC = {"/oauth/token","/customer/**","/doctor/**","/appointment/**", "/h2-console/**", "/v3/**", "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**", "/"};
 
     private static final String[] OPERATOR_OR_ADMIN = {"/products/**", "/categories/**"};
 
@@ -57,7 +57,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         http.cors().configurationSource(corsConfigurationSource());
     }
 
-    @Bean
+//    @Bean
     public CorsConfigurationSource corsConfigurationSource() {
         CorsConfiguration corsConfig = new CorsConfiguration();
         corsConfig.setAllowedOriginPatterns(Arrays.asList("*"));
@@ -70,7 +70,7 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
         return source;
     }
 
-    @Bean
+//    @Bean
     public FilterRegistrationBean<CorsFilter> corsFilter() {
         FilterRegistrationBean<CorsFilter> bean
                 = new FilterRegistrationBean<>(new CorsFilter(corsConfigurationSource()));

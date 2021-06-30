@@ -24,8 +24,10 @@ class CustomerService {
   }
 
   save(customer) {
-    this.customers.map((a) => (customer.id !== customer.id ? a : customer));
-    console.log(customer);
+      axios.post(`${API_ENDPOINT}/customer`, customer)
+    .then((response) => {
+      console.log(response.data)
+    })
   }
 
   buildAuthHeader() {

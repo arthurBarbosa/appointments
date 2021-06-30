@@ -1,32 +1,31 @@
 import React, { Component } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
 import DoctorService from '../api/DoctorService';
+import Alert from './Alert';
 
 export default class DoctorForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      customer: [],
       id: 0,
       name: '',
     };
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.onInputChangeHandler = this.onInputChangeHandler.bind(this);
   }
-
+ 
   onSubmitHandler(event) {
     event.preventDefault();
-    // this.onInputChangeHandler(event)
-    DoctorService.save(event.target.value);
+    this.onInputChangeHandler(event)
+    DoctorService.save(this.state);
+    toast.success('Médico salvo com sucesso', {
+      position: toast.POSITION.BOTTOM_LEFT
+    })
   }
 
   onInputChangeHandler(event) {
-    const field = event.target.name;
-    const value = event.target.value;
-    this.setState((customer) => ({
-      customer: { customer, [field]: value },
-    }));
-    console.log(this.state.customer);
+    this.setState({name: event.target.value})
   }
 
   render() {
@@ -48,10 +47,11 @@ export default class DoctorForm extends Component {
             Cadastrar
           </button>
           &nbsp;&nbsp;
-          <button type="submit" className="btn btn-primary">
+          <button type="reset" className="btn btn-primary">
             Cancelar
           </button>
         </form>
+        <ToastContainer autoClose={1500} />
       </div>
     );
   }

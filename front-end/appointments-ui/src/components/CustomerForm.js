@@ -1,4 +1,6 @@
 import React, { Component } from 'react';
+import { toast, ToastContainer } from 'react-toastify';
+import CustomerService from '../api/CustomerService';
 
 export default class CustomerForm extends Component {
   constructor(props) {
@@ -13,17 +15,16 @@ export default class CustomerForm extends Component {
   }
 
   onSubmitHandler(event) {
-    event.preventDefault();
-    alert('subit');
+   event.preventDefault();
+   this.onInputChangeHandler(event);
+   CustomerService.save(this.state);
+   toast.success('Cliente salvo com sucesso!', {
+     position:toast.POSITION.BOTTOM_LEFT,
+   })
   }
 
   onInputChangeHandler(event) {
-    const field = event.target.name;
-    const value = event.target.value;
-    this.setState((prevState) => ({
-      customer: { ...prevState.customer, [field]: value },
-    }));
-    console.log(this.state.customer);
+    this.setState({name: event.target.value})
   }
 
   render() {
@@ -45,10 +46,11 @@ export default class CustomerForm extends Component {
             Cadastrar
           </button>
           &nbsp;&nbsp;
-          <button type="submit" className="btn btn-primary">
+          <button type="reset" className="btn btn-primary">
             Cancelar
           </button>
         </form>
+        <ToastContainer autoClose={1500} />
       </div>
     );
   }
