@@ -25,7 +25,9 @@ class DoctorService {
 
   save(doctor) {
     this.doctors.map((a) => (doctor.id !== doctor.id ? a : doctor));
-    console.log(doctor);
+    axios
+      .post(`${API_ENDPOINT}/doctor`, doctor)
+      .then((response) => response.data);
   }
 
   buildAuthHeader() {

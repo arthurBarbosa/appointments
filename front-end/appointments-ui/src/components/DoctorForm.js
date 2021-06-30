@@ -1,10 +1,12 @@
 import React, { Component } from 'react';
+import DoctorService from '../api/DoctorService';
 
 export default class DoctorForm extends Component {
   constructor(props) {
     super(props);
 
     this.state = {
+      customer: [],
       id: 0,
       name: '',
     };
@@ -14,14 +16,15 @@ export default class DoctorForm extends Component {
 
   onSubmitHandler(event) {
     event.preventDefault();
-    alert('subit');
+    // this.onInputChangeHandler(event)
+    DoctorService.save(event.target.value);
   }
 
   onInputChangeHandler(event) {
     const field = event.target.name;
     const value = event.target.value;
-    this.setState((prevState) => ({
-      customer: { ...prevState.customer, [field]: value },
+    this.setState((customer) => ({
+      customer: { customer, [field]: value },
     }));
     console.log(this.state.customer);
   }
