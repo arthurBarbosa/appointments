@@ -20,6 +20,6 @@ public class CustomerService extends GenericService<Customer, CustomerDTO, Custo
 
     @Override
     protected void valid(CustomerDTO dto) {
-        if(repository.findByName(dto.getName()).isEmpty()) throw new DuplicateRegisterException("Cliente já cadastrado");
+        if(!repository.findByName(dto.getName()).isEmpty()) throw new DuplicateRegisterException("Cliente já cadastrado");
     }
 }

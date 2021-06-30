@@ -62,7 +62,7 @@ public class ErrorHandlerExcption extends ResponseEntityExceptionHandler {
     @ExceptionHandler(ConstraintViolationException.class)
     public ResponseEntity<Object> handleException(ConstraintViolationException ex, WebRequest request) {
         HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
-        ExceptionEnum errorType = ExceptionEnum.EMAIL_DUPLICATE;
+        ExceptionEnum errorType = ExceptionEnum.ERROR_CONSTRAINT;
         String msg = ex.getMessage();
         Error errors = createErrorBuilder(status, errorType, msg).build();
         return handleExceptionInternal(ex, errors, new HttpHeaders(), status, request);
@@ -71,7 +71,7 @@ public class ErrorHandlerExcption extends ResponseEntityExceptionHandler {
     @ExceptionHandler(DuplicateRegisterException.class)
     public ResponseEntity<Object> handleException(DuplicateRegisterException ex, WebRequest request) {
         HttpStatus status = HttpStatus.NOT_ACCEPTABLE;
-        ExceptionEnum errorType = ExceptionEnum.USER_DUPLICATE;
+        ExceptionEnum errorType = ExceptionEnum.REGISTER_DUPLICATE;
         String msg = ex.getMessage();
         Error errors = createErrorBuilder(status, errorType, msg).build();
         return handleExceptionInternal(ex, errors, new HttpHeaders(), status, request);
