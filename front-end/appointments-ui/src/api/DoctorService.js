@@ -2,9 +2,9 @@ import axios from 'axios';
 import { API_ENDPOINT } from '../constants';
 import AuthService from './AuthService';
 
-class CustomerService {
+class DoctorService {
   constructor() {
-    this.customers = [
+    this.doctors = [
       { id: 1, name: 'Arthur' },
       { id: 1, name: 'André' },
       { id: 1, name: 'Celio' },
@@ -14,18 +14,18 @@ class CustomerService {
 
   list(onFetch, onError) {
     axios
-      .get(`${API_ENDPOINT}/customer`)
+      .get(`${API_ENDPOINT}/doctor`)
       .then((response) => onFetch(response.data))
       .catch((e) => onError(e));
   }
 
   delete(id) {
-    this.customers = this.customers.filter((customer) => customer.id !== id);
+    this.doctors = this.doctors.filter((doctor) => doctor.id !== id);
   }
 
-  save(customer) {
-    this.customers.map((a) => (customer.id !== customer.id ? a : customer));
-    console.log(customer);
+  save(doctor) {
+    this.doctors.map((a) => (doctor.id !== doctor.id ? a : doctor));
+    console.log(doctor);
   }
 
   buildAuthHeader() {
@@ -36,4 +36,4 @@ class CustomerService {
     };
   }
 }
-export default new CustomerService();
+export default new DoctorService();

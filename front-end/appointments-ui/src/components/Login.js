@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Redirect } from 'react-router';
 import AuthService from '../api/AuthService';
 import Alert from './Alert';
 
@@ -11,15 +12,29 @@ export default class Login extends Component {
       password: '',
       processing: '',
       alert: null,
+      loggedIn: false,
     };
 
     this.handleSubmit = this.handleSubmit.bind(this);
     this.handleInputChanged = this.handleInputChanged.bind(this);
+    this.handleLoginResponse = this.handleLoginResponse.bind(this);
   }
 
   handleSubmit(event) {
     event.preventDefault();
-    AuthService.login(this.state.username, this.state.password);
+    AuthService.login(
+      this.state.username,
+      this.state.password,
+      this.handleLoginResponse,
+    );
+  }
+
+  handleLoginResponse(success) {
+    if (success) {
+      this.setState({ loggedIn: true });
+    } else {
+      this.setState({ alert: 'O login não pode ser realizado' });
+    }
   }
 
   handleInputChanged(event) {
@@ -29,6 +44,9 @@ export default class Login extends Component {
   }
 
   render() {
+    if (this.state.loggedIn) {
+      return <Redirect to="/" />;
+    }
     return (
       <div>
         <h1>Login</h1>

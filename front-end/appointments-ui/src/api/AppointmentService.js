@@ -18,11 +18,11 @@ class AppointmentService {
     );
   }
 
-  save(appointment) {
-    this.appointments.map((a) =>
-      appointment.id !== appointment.id ? a : appointment,
-    );
-    console.log(appointment);
-  }
+  // save(appointment) {
+  //   this.appointments.map((a) =>
+  //     appointment.id !== appointment.id ? a : appointment,
+  //   );
+  //   console.log(appointment);
+  // }
 }
 export default new AppointmentService();
