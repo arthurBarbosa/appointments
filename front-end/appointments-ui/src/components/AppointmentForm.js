@@ -8,14 +8,16 @@ export default class AppointmentForm extends Component {
     super(props);
 
     this.state = {
-      date: '',
-      doctor: {
-        id: 0,
-        name: '',
-      },
-      customer: {
-        id: 0,
-        name: '',
+      appointment: {
+        date: '',
+        doctor: {
+          id: 0,
+          name: '',
+        },
+        customer: {
+          id: 0,
+          name: '',
+        }
       },
       customers: [],
       selectedCustomer: '',
@@ -34,7 +36,8 @@ export default class AppointmentForm extends Component {
   onSubmitHandler(event) {
     event.preventDefault();
     this.onInputChangeHandler(event);
-    AppointmentService.save(this.state);
+    // AppointmentService.save(this.state);
+    console.log(this.state.appointment)
   }
 
   async listCustomer() {
@@ -45,13 +48,10 @@ export default class AppointmentForm extends Component {
     this.setState({ doctors: await DoctorService.list() });
   }
 
-  onInputChangeHandler(event) {
-    this.setState(
-      { date: event.target.value },
-      { doctor: event.target.value },
-      { customer: event.target.value },
-    );
-    console.log(event.target.value);
+  onInputChangeHandler( event) {
+    const field = event.target.name;
+    const value = event.target.value;
+    this.setState(({ [field]: value}));
   }
   render() {
     return (
@@ -64,7 +64,7 @@ export default class AppointmentForm extends Component {
               type="date"
               className="form-control"
               name="date"
-              onChange={this.onInputChangeHandler}
+              onChange={(e) => this.setState({appointment: { date: e.target.value }})}
             />
           </div>
           <div className="form-group">
@@ -72,10 +72,7 @@ export default class AppointmentForm extends Component {
             <select
               className="form-control"
               name="customer"
-              onChange={(e) => {
-                this.setState({ selectedCustomer: e.target.value });
-                console.log(this.state.selectedCustomer);
-              }}
+              onChange={(e) => this.setState({appointment: { customer: { name: e.target.value} }})}
             >
               {this.state.customers.map((customer) => {
                 return (
@@ -91,10 +88,7 @@ export default class AppointmentForm extends Component {
             <select
               className="form-control"
               name="doctor"
-              onChange={(e) => {
-                this.setState({ selectedDoctor: e.target.value });
-                console.log(this.state.selectedDoctor);
-              }}
+              onChange={(e) => this.setState({appointment: { doctor: { name: e.target.value} }})}
             >
               {this.state.doctors.map((doctor) => {
                 return (
