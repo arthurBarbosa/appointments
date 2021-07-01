@@ -5,7 +5,7 @@ Esta api possui as funcionalidades de criar um cliente, criar um um cadastro de 
 listagem de clientes,listagem de médicos, cadastro de consultas, listagem de consulta médica.
 
 # Tecnologia usadas
-Java, Springboot,Spring Security, OAuth2.0 utilizando uma estrutura de autorização, 
+Java, Springboot,Spring Security, OAuth2.0 com JWT utilizando uma estrutura de autorização, 
 utilizado Bcrypt para criptográfia de senha de usuários, JPA para persistêcia de dados no banco,
 Bean Validation para validação do objetos, uso do padrão data transfer object para trafego de objetos
 na rede, api documentada utilizando swagger, banco de dados h2 para desenvolvimento, em produção esta aplicação está usando
