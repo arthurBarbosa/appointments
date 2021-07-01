@@ -13,8 +13,6 @@ Postgresql. Aplicação versionada utilizando git flow para separação de featu
 Aplicação foi desenvolvida fazendo uso de generics do Java para reduzir códigos duplicado na aplicação.
 Frontend utilizando reactjs com javascript puro, utilizando framework css bootstrap para agilidade no desenvolvimento das telas.
 
-# Obs: Aplicação até o momento ainda não está autenticando pela aplicação frontend, somente funcionando autenticação via postman e swagger.
-
 ## 🚀 Rodando a aplicação
 
 Faça o clone da aplicação em seu computador, realize o importe para a IDE de programação de seu gosto.
