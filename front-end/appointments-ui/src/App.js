@@ -8,6 +8,7 @@ import NavBar from './components/NavBar';
 import DoctorForm from './components/DoctorForm';
 import DoctorListTable from './components/DoctorListTable';
 import AppointmentForm from './components/AppointmentForm';
+import UserRegisterForm from './components/UserRegisterForm';
 
 class App extends Component {
   constructor(props) {
@@ -35,6 +36,7 @@ class App extends Component {
                 component={CustomerListTable}
               />
               <Route exact path="/doctor-form" component={DoctorForm} />
+              <Route exact path="/user-form" component={UserRegisterForm} />
               <Route path="/" component={Login} />
             </Switch>
           </div>

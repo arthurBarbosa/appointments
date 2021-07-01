@@ -28,9 +28,9 @@ public class ResourceServerConfig extends ResourceServerConfigurerAdapter {
     private Environment env;
     @Autowired
     private JwtTokenStore tokenStore;
-    private static final String[] PUBLIC = {"/oauth/token","/doctor/**","/customer/**","/appointment", "/h2-console/**", "/v3/**", "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**", "/"};
+    private static final String[] PUBLIC = {"/oauth/token","/doctor/**","/customer/**", "/users/**", "/appointment/**", "/h2-console/**", "/v3/**", "/v2/api-docs", "/configuration/**", "/swagger*/**", "/webjars/**", "/"};
     private static final String[] OPERATOR_OR_ADMIN = {"/products/**", "/categories/**"};
-    private static final String[] ADMIN = {"/users/**"};
+    private static final String[] ADMIN = {"/hahaha"};
 
     @Override
     public void configure(ResourceServerSecurityConfigurer resources) throws Exception {

@@ -15,6 +15,7 @@ export default class NavBar extends Component {
 
         { name: '+ Médico', href: '/doctor-form', active: false },
         { name: '+ Cliente', href: '/form-client', active: false },
+        { name: '+ Usuário', href: '/user-form', active: false },
         { name: 'Login', href: '/', active: false },
       ],
     };

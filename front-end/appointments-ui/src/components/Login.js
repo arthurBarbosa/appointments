@@ -79,6 +79,7 @@ export default class Login extends Component {
           <button className="btn btn-primary" disabled={this.state.processing}>
             Login
           </button>
+          <p>Não possui usuário <a href="user-form">clique aqui.</a> </p>
         </form>
       </div>
     );
