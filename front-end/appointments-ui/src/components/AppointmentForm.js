@@ -38,7 +38,7 @@ export default class AppointmentForm extends Component {
   onSubmitHandler(event) {
     event.preventDefault();
     this.onInputChangeHandler(event);
-    AppointmentService.save(this.state);
+    // AppointmentService.save(this.state);
     console.log(this.state.appointment)
   }
 
@@ -74,7 +74,6 @@ export default class AppointmentForm extends Component {
             <select
               className="form-control"
               name="customer"
-              value={this.state.value}
               onChange={(e) => this.setState({appointment: { customer: { name: e.target.value} }})}
             >
               <option>{this.state.value}</option>
