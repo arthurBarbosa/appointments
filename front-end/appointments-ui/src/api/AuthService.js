@@ -11,21 +11,17 @@ class AuthService {
     const token = `${CLIENT_ID}:${CLIENT_SECRET}`;
     const headers = {
       Authorization: `Basic ${window.btoa(token)}`,
-      'Content-Type': 'application/x-www-form-urlencoded',
-      'Access-Control-Allow-Origin': 'https://localhost:3000',
-      'Access-Control-Allow-Methods': 'POST',
-      'Access-Control-Allow-Headers': '*',
-      'Access-Control-Max-Age': 86400,
+      "Content-Type": "application/x-www-form-urlencoded",
     };
-
+ 
     axios
       .post(
-        `${AUTH_ENDPOINT}`,
-        { username: username, password: password, grant_type: 'password' },
-        { headers },
+        `${AUTH_ENDPOINT}?username=${username}&password=${password}&grant_type=password`,
+        {},
+        { headers }
       )
       .then((response) => {
-        const jwtToken = response.headers['authorization'];
+        const jwtToken = response.data.access_token;
         sessionStorage.setItem(JWT_TOKEN_NAME, jwtToken);
         onLogin(true);
       })

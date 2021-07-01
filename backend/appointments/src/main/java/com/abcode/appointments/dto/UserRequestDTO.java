@@ -1,6 +1,5 @@
 package com.abcode.appointments.dto;
 
-import com.abcode.appointments.entities.Role;
 import com.abcode.appointments.entities.User;
 import lombok.AllArgsConstructor;
 import lombok.Getter;

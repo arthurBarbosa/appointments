@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import AppointmentService from '../api/AppointmentService';
+import Moment from 'react-moment';
 import 'react-toastify/dist/ReactToastify.css';
 
 export default class AppointmentListTable extends Component {
@@ -79,7 +80,7 @@ const TableBody = (props) => {
     <tbody>
       {props.appointments.map((appointment) => (
         <tr key={appointment.doctor.id}>
-          <td>{appointment.date}</td>
+          <td><Moment format="DD/MM/YYYY">{appointment.date}</Moment></td>
           <td>{appointment.doctor.name}</td>
           <td>{appointment.customer.name}</td>
           <td>

@@ -8,13 +8,14 @@ export default class NavBar extends Component {
 
     this.state = {
       items: [
-        { name: 'consultas', href: '/', active: true },
-        { name: 'médicos', href: '/doctors', active: true },
+        { name: 'consultas', href: '/appointments', active: false },
+        { name: 'médicos', href: '/doctors', active: false },
         { name: 'clientes', href: '/list-customers', active: false },
         { name: '+ Consulta', href: '/form-appointment', active: false },
 
         { name: '+ Médico', href: '/doctor-form', active: false },
         { name: '+ Cliente', href: '/form-client', active: false },
+        { name: 'Login', href: '/', active: false },
       ],
     };
     this.onClickHandler = this.onClickHandler.bind(this);

@@ -45,7 +45,7 @@ export default class Login extends Component {
 
   render() {
     if (this.state.loggedIn) {
-      return <Redirect to="/" />;
+      return <Redirect to="/appointments" />;
     }
     return (
       <div>

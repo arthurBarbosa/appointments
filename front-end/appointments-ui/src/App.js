@@ -28,14 +28,14 @@ class App extends Component {
                 component={AppointmentForm}
               />
               <Route exact path="/doctors" component={DoctorListTable} />
-              <Route exact path="/login" component={Login} />
+              <Route exact path="/appointments" component={AppointmentListTable} />
               <Route
                 exact
                 path="/list-customers"
                 component={CustomerListTable}
               />
               <Route exact path="/doctor-form" component={DoctorForm} />
-              <Route path="/" component={AppointmentListTable} />
+              <Route path="/" component={Login} />
             </Switch>
           </div>
         </div>
