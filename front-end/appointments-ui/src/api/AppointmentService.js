@@ -27,6 +27,10 @@ class AppointmentService {
     // this.appointments.map((a) =>
     //   appointment.id !== appointment.id ? a : appointment,
     // );
+    axios.post(`${API_ENDPOINT}/appointment`, appointment)
+    .then((response) => {
+      console.log(response.data)
+    })
     console.log(appointment);
   }
 }

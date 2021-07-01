@@ -1,6 +1,5 @@
 import React, { Component } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
-import DoctorService from '../api/DoctorService';
 import UserService from '../api/UserService';
 
 export default class UserRegisterForm extends Component {
