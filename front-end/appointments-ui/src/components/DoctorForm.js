@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import { toast, ToastContainer } from 'react-toastify';
 import DoctorService from '../api/DoctorService';
-import Alert from './Alert';
 
 export default class DoctorForm extends Component {
   constructor(props) {
@@ -14,18 +13,18 @@ export default class DoctorForm extends Component {
     this.onSubmitHandler = this.onSubmitHandler.bind(this);
     this.onInputChangeHandler = this.onInputChangeHandler.bind(this);
   }
- 
+
   onSubmitHandler(event) {
     event.preventDefault();
-    this.onInputChangeHandler(event)
+    this.onInputChangeHandler(event);
     DoctorService.save(this.state);
     toast.success('Médico salvo com sucesso', {
-      position: toast.POSITION.BOTTOM_LEFT
-    })
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
   }
 
   onInputChangeHandler(event) {
-    this.setState({name: event.target.value})
+    this.setState({ name: event.target.value });
   }
 
   render() {

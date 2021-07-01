@@ -19,15 +19,23 @@ class CustomerService {
       .catch((e) => onError(e));
   }
 
+  async listCustomer() {
+    const response = await axios
+      .get(`${API_ENDPOINT}/customer`)
+      .then((response) => {
+        return response.data;
+      });
+    return response;
+  }
+
   delete(id) {
     this.customers = this.customers.filter((customer) => customer.id !== id);
   }
 
   save(customer) {
-      axios.post(`${API_ENDPOINT}/customer`, customer)
-    .then((response) => {
-      console.log(response.data)
-    })
+    axios.post(`${API_ENDPOINT}/customer`, customer).then((response) => {
+      console.log(response.data);
+    });
   }
 
   buildAuthHeader() {

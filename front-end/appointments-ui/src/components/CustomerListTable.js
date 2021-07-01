@@ -95,12 +95,18 @@ const TableBody = (props) => {
           <td>{customer.id}</td>
           <td>{customer.name}</td>
           <td>
-            <input type="button" className="btn btn-primary" value="Editar" />
+            <input
+              type="button"
+              className="btn btn-primary"
+              value="Editar"
+              disabled
+            />
             &nbsp;
             <input
               type="button"
               className="btn btn-danger"
               value="Excluir"
+              disabled
               onClick={() => props.onDelete(customer.id)}
             />
           </td>

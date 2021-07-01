@@ -10,11 +10,11 @@ export default class NavBar extends Component {
       items: [
         { name: 'consultas', href: '/', active: true },
         { name: 'médicos', href: '/doctors', active: true },
-        { name: 'Consultas', href: '/form', active: false },
         { name: 'clientes', href: '/list-customers', active: false },
+        { name: '+ Consulta', href: '/form-appointment', active: false },
+
         { name: '+ Médico', href: '/doctor-form', active: false },
         { name: '+ Cliente', href: '/form-client', active: false },
-        { name: '+ Consulta', href: '/form-client', active: false }
       ],
     };
     this.onClickHandler = this.onClickHandler.bind(this);

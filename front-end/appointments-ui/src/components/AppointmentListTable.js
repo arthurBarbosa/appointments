@@ -9,6 +9,8 @@ export default class AppointmentListTable extends Component {
 
     this.state = {
       appointments: [],
+      loading: false,
+      alert: null,
     };
     this.onDeleteHandler = this.onDeleteHandler.bind(this);
     this.onStatusChangeHandler = this.onStatusChangeHandler.bind(this);
@@ -77,17 +79,22 @@ const TableBody = (props) => {
     <tbody>
       {props.appointments.map((appointment) => (
         <tr key={appointment.doctor.id}>
-          
           <td>{appointment.date}</td>
           <td>{appointment.doctor.name}</td>
           <td>{appointment.customer.name}</td>
           <td>
-            <input type="button" className="btn btn-primary" value="Editar" />
+            <input
+              type="button"
+              className="btn btn-primary"
+              value="Editar"
+              disabled
+            />
             &nbsp;
             <input
               type="button"
               className="btn btn-danger"
               value="Excluir"
+              disabled
               onClick={() => props.onDelete(appointment.id)}
             />
           </td>

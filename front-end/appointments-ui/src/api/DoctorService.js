@@ -4,19 +4,23 @@ import AuthService from './AuthService';
 
 class DoctorService {
   constructor() {
-    this.doctors = [
-      { id: 1, name: 'Arthur' },
-      { id: 1, name: 'André' },
-      { id: 1, name: 'Celio' },
-      { id: 1, name: 'João' },
-    ];
+    this.doctors = [];
   }
 
-  list(onFetch, onError) {
+  listDoctor(onFetch, onError) {
     axios
       .get(`${API_ENDPOINT}/doctor`)
       .then((response) => onFetch(response.data))
       .catch((e) => onError(e));
+  }
+
+  async list() {
+    const response = await axios
+      .get(`${API_ENDPOINT}/doctor`)
+      .then((response) => {
+        return response.data;
+      });
+    return response;
   }
 
   delete(id) {
@@ -24,13 +28,9 @@ class DoctorService {
   }
 
   save(doctor) {
-    // this.doctors.map((a) => (doctor.id !== doctor.id ? a : doctor));
-    axios
-      .post(`${API_ENDPOINT}/doctor`, doctor)
-      .then((response) => {
-        console.log(response.data)
-      });
-      
+    axios.post(`${API_ENDPOINT}/doctor`, doctor).then((response) => {
+      console.log(response.data);
+    });
   }
 
   buildAuthHeader() {

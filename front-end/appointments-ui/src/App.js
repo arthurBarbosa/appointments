@@ -22,7 +22,11 @@ class App extends Component {
           <div className="container" style={{ marginTop: 20 }}>
             <Switch>
               <Route exact path="/form-client" component={CustomerForm} />
-              <Route exact path="/form-appointment" component={AppointmentForm} />
+              <Route
+                exact
+                path="/form-appointment"
+                component={AppointmentForm}
+              />
               <Route exact path="/doctors" component={DoctorListTable} />
               <Route exact path="/login" component={Login} />
               <Route

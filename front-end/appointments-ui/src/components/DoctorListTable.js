@@ -25,7 +25,7 @@ export default class DoctorListTable extends Component {
 
   listDoctors() {
     this.setState({ loading: true });
-    DoctorService.list(
+    DoctorService.listDoctor(
       (doctors) => this.setState({ doctors: doctors, loading: false }),
       (error) => this.setErrorState(error),
     );
@@ -96,12 +96,18 @@ const TableBody = (props) => {
           <td>{doctor.id}</td>
           <td>{doctor.name}</td>
           <td>
-            <input type="button" className="btn btn-primary" value="Editar" />
+            <input
+              type="button"
+              className="btn btn-primary"
+              value="Editar"
+              disabled
+            />
             &nbsp;
             <input
               type="button"
               className="btn btn-danger"
               value="Excluir"
+              disabled
               onClick={() => props.onDelete(doctor.id)}
             />
           </td>

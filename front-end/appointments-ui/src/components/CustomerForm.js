@@ -15,22 +15,22 @@ export default class CustomerForm extends Component {
   }
 
   onSubmitHandler(event) {
-   event.preventDefault();
-   this.onInputChangeHandler(event);
-   CustomerService.save(this.state);
-   toast.success('Cliente salvo com sucesso!', {
-     position:toast.POSITION.BOTTOM_LEFT,
-   })
+    event.preventDefault();
+    this.onInputChangeHandler(event);
+    CustomerService.save(this.state);
+    toast.success('Cliente salvo com sucesso!', {
+      position: toast.POSITION.BOTTOM_LEFT,
+    });
   }
 
   onInputChangeHandler(event) {
-    this.setState({name: event.target.value})
+    this.setState({ name: event.target.value });
   }
 
   render() {
     return (
       <div>
-        <h1>Cadastro usuario</h1>
+        <h1>Cadastro Cliente</h1>
         <form onSubmit={this.onSubmitHandler}>
           <div className="form-group">
             <label htmlFor="name">Nome</label>
