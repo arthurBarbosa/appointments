@@ -23,7 +23,7 @@ Mude a configuração spring.active.profiles=prod para spring.active.profiles=te
 sem a necessidade de instalação de um banco de dados em sua maquina. Você também pode rodar o comando 
 docker abaixo para a execução de um container de banco de dados.
 
-Com o Docker instalado rode o comando: docker run -p 5432:5432 --name appointments -e POSTGRES_USER=appointments -e POSTGRES_PASSWORD=appointments -e POSTGRES_DB=votacao -d postgres:10.5-alpine
+Com o Docker instalado rode o comando: docker run -p 5432:5432 --name appointments -e POSTGRES_USER=appointments -e POSTGRES_PASSWORD=appointments -e POSTGRES_DB=appointments -d postgres:10.5-alpine
 
 ## 🚀 Acessando Documentação da aplicação através do swagger
 http://localhost:8080/swagger-ui.html
